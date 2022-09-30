@@ -11,4 +11,3 @@
     - zamówienie na wynos.
 
 * Osoba przychodząca do Pizzeri zamawia pizze lub wiele pizzy i zajmuje stolik z x liczbą miejsc. Każde zamówienie jest robione przez osobnego kucharza. W sytuacji gdy nie ma kucharzy zamówienie powinno trafić do kolejki jezeli jest dostepny stolik dla klienta aby poczekal na zamowienie. W sytuacji gdy nie ma stolika i kucharz jest zajety klient nie moze zostac obsluzony.
-29 września 2022
