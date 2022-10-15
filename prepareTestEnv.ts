@@ -1,10 +1,10 @@
-import { Ingredient } from "./src/Ingredient";
-import { Cook } from "./src/Cook";
+import { Ingredient } from "./src/Ingredient/Ingredient";
+import { Cook } from "./src/Cook/Cook";
 import { Table } from "./src/Table";
 import { IngredientsList } from "./src/Lists/IngredientsList";
-import { CooksList } from "./src/Lists/CooksList";
-import { TablesList } from "./src/Lists/TablesList";
-import { OrdersList } from "./src/Lists/OrdersList";
+import { CooksList } from "./src/Lists/ListsOfCooks/AvailableCooksList";
+import { TablesList } from "./src/Lists/AvailableTablesList";
+import { OrdersList } from "./src/Lists/FinishedOrdersList";
 import { PizzaShop } from "./src/PizzaShop";
 
 const ham = new Ingredient("ham", 500);

@@ -1,65 +1,44 @@
-import {
-  listOfOrders,
-  listOfTables,
-  listOfCooks,
-  listOfIngredients,
-} from "./Lists/types";
-
 export interface IIngredient {
-  name: string;
-  amount: number;
+  readonly id: string;
+  readonly name: string;
+  getAmount(): number;
+  changeAmount(newAmount: number): void;
 }
 
-export interface IPizza {
-  name: string;
-  listOfIngredients: IIngredient[];
-}
-
-export interface IEmployee {
-  name: string;
-}
-
-export interface ICook extends IEmployee {
-  status: "available" | "non available";
+export interface ICook {
+  readonly id: string;
+  readonly name: string;
 }
 
 export interface ITable {
-  number: number;
-  nrOfSeats: number;
-  status: ICook["status"];
+  readonly id: string;
+  readonly nrOfSeats: number;
 }
 
 export interface IOrder {
-  id: string;
+  readonly id: string;
   listOfOrderedPizzas: IPizza[];
-  discount: number;
-  price: number;
-  status: "Done" | "In preparation" | "In queue";
-  payed: boolean;
-  table: ITable | "takeaway";
+  discount?: number;
 }
 
+export interface IPizza {
+  readonly id: string;
+  readonly listOfIngredients: IIngredient[];
+}
 export interface IPizzaShop {
-  orders: listOfOrders;
-  tables: listOfTables;
-  cooks: listOfCooks;
-  ingredients: listOfIngredients;
-  orderPizza(
-    listOfPizzas: Array<IPizza>,
+  orderPizzaToEatIn(
+    listOfPizzas: IPizza[],
     nrOfPeople: number,
-    takeaway: boolean,
-    discount?: number
-  ): void;
-  bookTable(nrOfSeats: number): ITable;
-  pay(orderNumber: number): void;
-  createSinglePizza(listOfIngredients: Array<IIngredient>): void;
-  createManyPizzas(listOfPizzas: IPizza[]): boolean;
-  findAvailableCook(): ICook | false;
-  getIngredientsList(): IIngredient[];
-  getAvailableCooks(): ICook[];
-  getOrdersInPrep(): IOrder[];
-  getOrdersInQueue(): IOrder[];
-  getOrdersFinished(): IOrder[];
-  getAvailableTables(): ITable[];
-  getOccupiedTables(): ITable[];
+    discount: number
+  ): boolean;
+  orderPizzaToTakeAway(listOfPizzas: IPizza[], discount: number): boolean;
+  bookTable(nrOfSeats: number): ITable | false;
+}
+
+export interface IList<T> {
+  findAll(): T[];
+  add(newElement: T): void;
+  find(element: T): T | false;
+  findById(id: string): T | false;
+  delete(element: T): void;
 }

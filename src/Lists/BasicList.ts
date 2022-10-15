@@ -1,7 +1,7 @@
-import { IList } from "./types";
+import { IList } from "../types";
 
-export class BasicList<T> implements IList<T> {
-  constructor(public list: Array<T> = []) {}
+export abstract class BasicList<T extends { id?: string }> implements IList<T> {
+  constructor(protected list: Array<T> = []) {}
 
   findAll(): T[] {
     return this.list;
@@ -17,7 +17,7 @@ export class BasicList<T> implements IList<T> {
 
   delete(element: T): void {
     if (this.find(element)) {
-      const index = this.getIndex(element);
+      const index = this.findIndex(element);
       this.list.splice(index, 1);
       return;
     }
@@ -30,7 +30,14 @@ export class BasicList<T> implements IList<T> {
     return false;
   }
 
-  getIndex(element: T): number {
+  findById(id: string): T | false {
+    const foundElement = this.list.find((listItem) => {
+      return listItem.id === id;
+    });
+    return foundElement || false;
+  }
+
+  private findIndex(element: T): number {
     const index = this.list.findIndex((listItem) => {
       listItem === element;
     });
