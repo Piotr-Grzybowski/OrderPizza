@@ -1,22 +1,14 @@
-import { ITable, IList } from "../../types";
+import { ITable } from "../../types";
 import { BasicList } from "../BasicList";
-import { Service } from "typedi";
+import { Service, Container } from "typedi";
+
+import "reflect-metadata";
 
 @Service()
 export class NotAvailableTablesList extends BasicList<ITable> {
-  private static instance: IList<ITable>;
-
-  private constructor() {
+  constructor() {
     super();
-  }
-
-  public static getInstance(): IList<ITable> {
-    if (!this.instance) {
-      this.instance = new NotAvailableTablesList();
-    }
-
-    return this.instance;
   }
 }
 
-export default NotAvailableTablesList.getInstance();
+export default Container.get(NotAvailableTablesList);

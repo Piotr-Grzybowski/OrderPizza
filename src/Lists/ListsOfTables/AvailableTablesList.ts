@@ -1,21 +1,12 @@
 import { ITable, IList } from "../../types";
 import { BasicList } from "../BasicList";
-import { Service } from "typedi";
+import { Service, Container } from "typedi";
+import "reflect-metadata";
 
 @Service()
 export class AvailableTablesList extends BasicList<ITable> {
-  private static instance: IList<ITable>;
-
-  private constructor() {
+  constructor() {
     super();
-  }
-
-  public static getInstance(): IList<ITable> {
-    if (!this.instance) {
-      this.instance = new AvailableTablesList();
-    }
-
-    return this.instance;
   }
 
   findFirstTableWithGivenNrOfSeats(nrOfSeats: number): ITable | false {
@@ -26,4 +17,4 @@ export class AvailableTablesList extends BasicList<ITable> {
   }
 }
 
-export default AvailableTablesList.getInstance();
+export default Container.get(AvailableTablesList);

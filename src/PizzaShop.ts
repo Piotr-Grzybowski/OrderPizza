@@ -5,10 +5,10 @@ import {
   IPizzaShop,
   ITable,
   ICook,
-  IIngredient,
   IPizza,
-  IOrder,
+  ingredientForPizza,
 } from "./types";
+import "reflect-metadata";
 import { AvailableCooksList } from "./Lists/ListsOfCooks/AvailableCooksList";
 import { NotAvailableCooksList } from "./Lists/ListsOfCooks/NotAvailableCooksList";
 import { AvailableTablesList } from "./Lists/ListsOfTables/AvailableTablesList";
@@ -27,7 +27,7 @@ class PizzaShop implements IPizzaShop {
     private ordersInPreparation: InPreparationOrdersList,
     private ordersInQueue: InQueueOrdersList,
     private ordersFinished: FinishedOrdersList,
-    private ingredients: IngredientsList
+    private ingredientsInStore: IngredientsList
   ) {}
 
   orderPizzaToEatIn(
@@ -83,7 +83,7 @@ class PizzaShop implements IPizzaShop {
     const rightTable =
       this.availableTables.findFirstTableWithGivenNrOfSeats(nrOfSeats);
     if (rightTable) {
-      this.moveFromOneListToAnother(
+      this.moveBetweenLists(
         rightTable,
         this.availableTables,
         this.notAvailableTables
@@ -93,10 +93,18 @@ class PizzaShop implements IPizzaShop {
     return false;
   }
 
+  showListOfOrdersInQueue() {
+    return this.ordersInQueue.findAll();
+  }
+
+  showListOfOrdersInPreparation() {
+    return this.ordersInPreparation.findAll();
+  }
+
   private findAvailableCook(): false | ICook {
     const firstAvailableCook = this.availableCooks.findAll()[0];
     if (firstAvailableCook) {
-      this.moveFromOneListToAnother(
+      this.moveBetweenLists(
         firstAvailableCook,
         this.availableCooks,
         this.notAvailableCooks
@@ -106,13 +114,17 @@ class PizzaShop implements IPizzaShop {
     return false;
   }
 
-  private createSinglePizza(listOfIngredients: IIngredient[]): void {
-    for (let ingredient of listOfIngredients) {
-      const currentIngredient = this.ingredients.findById(ingredient.id);
+  private createSinglePizza(
+    listOfIngredientsForPizza: ingredientForPizza[]
+  ): void {
+    for (let ingredientForPizza of listOfIngredientsForPizza) {
+      const currentIngredient = this.ingredientsInStore.findById(
+        ingredientForPizza.idOfIngredient
+      );
 
       if (currentIngredient) {
         const newAmount =
-          ingredient.getAmount() - currentIngredient.getAmount();
+          currentIngredient.getAmount() - ingredientForPizza.amountNeeded;
         currentIngredient.changeAmount(newAmount);
       } else {
         throw new Error("There is no such an ingredient");
@@ -128,7 +140,7 @@ class PizzaShop implements IPizzaShop {
     return true;
   }
 
-  private moveFromOneListToAnother<T>(
+  private moveBetweenLists<T>(
     element: T,
     fromList: IList<T>,
     toList: IList<T>

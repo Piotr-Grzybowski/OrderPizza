@@ -1,14 +1,13 @@
-import { Ingredient } from "../Ingredient/Ingredient";
 import { Pizza } from "../Pizza/Pizza";
-import { IIngredient, IOrder, IPizza } from "../types";
+import { ingredientForPizza, IOrder, IPizza } from "../types";
 import { Order } from "./Order";
 
 describe("Testing Order", () => {
   let order: IOrder;
-  let ingredient: IIngredient;
+  let ingredient: ingredientForPizza;
   let pizza: IPizza;
   beforeAll(() => {
-    ingredient = new Ingredient("cheese", 150);
+    ingredient = { idOfIngredient: "cheese", amountNeeded: 150 };
     pizza = new Pizza([ingredient]);
     order = new Order([pizza]);
   });

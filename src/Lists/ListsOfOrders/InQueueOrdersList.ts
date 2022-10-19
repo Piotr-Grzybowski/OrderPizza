@@ -1,22 +1,14 @@
-import { IOrder, IList } from "../../types";
+import { IOrder } from "../../types";
 import { BasicList } from "../BasicList";
-import { Service } from "typedi";
+import { Service, Container } from "typedi";
+
+import "reflect-metadata";
 
 @Service()
 export class InQueueOrdersList extends BasicList<IOrder> {
-  private static instance: IList<IOrder>;
-
-  private constructor() {
+  constructor() {
     super();
-  }
-
-  public static getInstance(): IList<IOrder> {
-    if (!this.instance) {
-      this.instance = new InQueueOrdersList();
-    }
-
-    return this.instance;
   }
 }
 
-export default InQueueOrdersList.getInstance();
+export default Container.get(InQueueOrdersList);

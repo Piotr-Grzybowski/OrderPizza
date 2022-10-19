@@ -1,22 +1,13 @@
-import { ICook, IList } from "../../types";
+import { ICook } from "../../types";
 import { BasicList } from "../BasicList";
-import { Service } from "typedi";
+import { Service, Container } from "typedi";
+import "reflect-metadata";
 
 @Service()
 export class AvailableCooksList extends BasicList<ICook> {
-  private static instance: IList<ICook>;
-
-  private constructor() {
+  constructor() {
     super();
-  }
-
-  public static getInstance(): IList<ICook> {
-    if (!this.instance) {
-      this.instance = new AvailableCooksList();
-    }
-
-    return this.instance;
   }
 }
 
-export default AvailableCooksList.getInstance();
+export default Container.get(AvailableCooksList);

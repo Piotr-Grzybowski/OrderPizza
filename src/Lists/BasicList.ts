@@ -1,6 +1,6 @@
 import { IList } from "../types";
 
-export abstract class BasicList<T extends { id?: string }> implements IList<T> {
+export abstract class BasicList<T extends { id: string }> implements IList<T> {
   constructor(protected list: Array<T> = []) {}
 
   findAll(): T[] {
@@ -8,7 +8,7 @@ export abstract class BasicList<T extends { id?: string }> implements IList<T> {
   }
 
   add(element: T): void {
-    if (!this.find(element)) {
+    if (this.findById(element.id) === false) {
       this.list.push(element);
       return;
     }
@@ -39,7 +39,7 @@ export abstract class BasicList<T extends { id?: string }> implements IList<T> {
 
   private findIndex(element: T): number {
     const index = this.list.findIndex((listItem) => {
-      listItem === element;
+      return listItem === element;
     });
     return index;
   }

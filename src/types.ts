@@ -21,9 +21,13 @@ export interface IOrder {
   discount?: number;
 }
 
+export type ingredientForPizza = {
+  idOfIngredient: string;
+  amountNeeded: number;
+};
 export interface IPizza {
   readonly id: string;
-  readonly listOfIngredients: IIngredient[];
+  readonly listOfIngredients: ingredientForPizza[];
 }
 export interface IPizzaShop {
   orderPizzaToEatIn(
@@ -33,6 +37,8 @@ export interface IPizzaShop {
   ): boolean;
   orderPizzaToTakeAway(listOfPizzas: IPizza[], discount: number): boolean;
   bookTable(nrOfSeats: number): ITable | false;
+  showListOfOrdersInQueue(): IOrder[];
+  showListOfOrdersInPreparation(): IOrder[];
 }
 
 export interface IList<T> {
