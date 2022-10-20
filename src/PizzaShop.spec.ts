@@ -1,12 +1,12 @@
-import { Pizza } from "./src/Pizza/Pizza";
-import { Table } from "./src/Table/Table";
-import { Cook } from "./src/Cook/Cook";
-import { Ingredient } from "./src/Ingredient/Ingredient";
-import IngredientsList from "./src/Lists/ListsOfIngredients/IngredientsList";
-import AvailableTablesList from "./src/Lists/ListsOfTables/AvailableTablesList";
-import AvailableCooksList from "./src/Lists/ListsOfCooks/AvailableCooksList";
-import PizzaShop from "./src/PizzaShop";
-import { IPizza } from "./src/types";
+import { Pizza } from "./Pizza/Pizza";
+import { Table } from "./Table/Table";
+import { Cook } from "./Cook/Cook";
+import { Ingredient } from "./Ingredient/Ingredient";
+import IngredientsList from "./Lists/ListsOfIngredients/IngredientsList";
+import AvailableTablesList from "./Lists/ListsOfTables/AvailableTablesList";
+import AvailableCooksList from "./Lists/ListsOfCooks/AvailableCooksList";
+import PizzaShop from "./PizzaShop";
+import { IPizza } from "./types";
 
 let pizza: IPizza, pizza1: IPizza, pizza2: IPizza, pizza3: IPizza;
 let pizzaWithNotExistingIngredient: IPizza;
