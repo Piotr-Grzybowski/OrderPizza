@@ -1,7 +1,6 @@
-import { IOrder } from "../../types";
+import { IOrder } from "../../Order/Order";
 import { BasicList } from "../BasicList";
 import { Service, Container } from "typedi";
-
 import "reflect-metadata";
 
 @Service()

@@ -1,5 +1,4 @@
-import { IList } from "../types";
-import { BasicList } from "./BasicList";
+import { BasicList, IList } from "./BasicList";
 
 type typeForTestingAbstractClass = {
   id: string;

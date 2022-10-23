@@ -1,4 +1,4 @@
-import { ICook } from "../../types";
+import { ICook } from "../../Cook/Cook";
 import { BasicList } from "../BasicList";
 import { Service, Container } from "typedi";
 import "reflect-metadata";

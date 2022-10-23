@@ -1,4 +1,4 @@
-import { ITable, IList } from "../../types";
+import { ITable } from "../../Table/Table";
 import { BasicList } from "../BasicList";
 import { Service, Container } from "typedi";
 import "reflect-metadata";

@@ -1,4 +1,3 @@
-import { ITable } from "../types";
 import { v4 } from "uuid";
 
 export class Table implements ITable {
@@ -6,4 +5,9 @@ export class Table implements ITable {
   constructor(readonly nrOfSeats: number) {
     this.id = v4();
   }
+}
+
+export interface ITable {
+  readonly id: string;
+  readonly nrOfSeats: number;
 }

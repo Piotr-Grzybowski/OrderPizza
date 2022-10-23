@@ -1,4 +1,3 @@
-import { IIngredient } from "../types";
 import { v4 } from "uuid";
 
 export class Ingredient implements IIngredient {
@@ -15,4 +14,11 @@ export class Ingredient implements IIngredient {
     if (newAmount >= 0) this.amount = newAmount;
     else throw new Error("There is not enough ingredients!");
   }
+}
+
+export interface IIngredient {
+  readonly id: string;
+  readonly name: string;
+  getAmount(): number;
+  changeAmount(newAmount: number): void;
 }

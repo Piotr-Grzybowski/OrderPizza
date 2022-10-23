@@ -1,4 +1,3 @@
-import { ICook } from "../types";
 import { v4 } from "uuid";
 
 export class Cook implements ICook {
@@ -6,4 +5,9 @@ export class Cook implements ICook {
   constructor(readonly name: string) {
     this.id = v4();
   }
+}
+
+export interface ICook {
+  readonly id: string;
+  readonly name: string;
 }

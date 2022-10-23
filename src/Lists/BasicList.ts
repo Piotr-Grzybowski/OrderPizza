@@ -1,5 +1,3 @@
-import { IList } from "../types";
-
 export abstract class BasicList<T extends { id: string }> implements IList<T> {
   constructor(protected list: Array<T> = []) {}
 
@@ -43,4 +41,12 @@ export abstract class BasicList<T extends { id: string }> implements IList<T> {
     });
     return index;
   }
+}
+
+export interface IList<T> {
+  findAll(): T[];
+  add(newElement: T): void;
+  find(element: T): T | false;
+  findById(id: string): T | false;
+  delete(element: T): void;
 }
